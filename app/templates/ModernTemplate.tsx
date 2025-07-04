@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { WorkExperience, Education as EducationType, Language, Skill, Project } from '../types/interfaces';
+import { StyleSheet, Text, View } from 'react-native';
 import { ResumeData } from '../context/ResumeContext';
+import { Education as EducationType, Language, Project, Skill, WorkExperience } from '../types/interfaces';
 
 interface ModernTemplateProps {
   resumeData: ResumeData;

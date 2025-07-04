@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Platform,
   Modal,
+  ViewStyle,
 } from "react-native";
 import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,6 +32,7 @@ import ThemeCustomizer from "./components/ThemeCustomizer";
 import Footer from "./components/Footer";
 import ExportModal from "./modal/ExportModal";
 import templateComponents from './templates';
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -46,6 +48,7 @@ const sections = [
 ];
 
 export default function ResumeBuilderScreen() {
+  const insets = useSafeAreaInsets();
   const router = useRouter();
   const params = useLocalSearchParams();
   const { fontFamily } = useFont();
@@ -172,7 +175,7 @@ export default function ResumeBuilderScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           title: "Create Resume",
@@ -262,7 +265,7 @@ export default function ResumeBuilderScreen() {
           onExport={() => openModal()}
           onTemplate={() => router.push("templates" as any)}
           onTheme={openModal}
-          style={styles.footer}
+          style={[styles.footer]}
         />
 
         <ThemeCustomizer
@@ -280,7 +283,7 @@ export default function ResumeBuilderScreen() {
           SelectedTemplateComponent={SelectedTemplateComponent}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -368,9 +371,9 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
-    padding: SPACING.lg,
     backgroundColor: "#fff",
     borderTopWidth: 1,
+    padding: SPACING.sm,
     borderTopColor: "#e0e0e0",
     gap: SPACING.md,
     justifyContent: "space-around",

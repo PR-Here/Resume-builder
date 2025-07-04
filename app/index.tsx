@@ -4,13 +4,14 @@ import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { FONT_SIZE, SPACING, BORDER_RADIUS, SHADOW, CARD } from './styles/responsive';
 import { useFont } from './hooks/useFont';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const { fontFamily } = useFont();
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.content}>
+      <SafeAreaView style={styles.content}>
         <View style={styles.header}>
           <Text style={[styles.title, { fontFamily }]}>Resume Builder</Text>
           <Text style={[styles.subtitle, { fontFamily }]}>Create a professional resume in minutes</Text>
@@ -69,7 +70,7 @@ export default function HomeScreen() {
             </View>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     </ScrollView>
   );
 }

@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ScrollView, Platform, Dimensions, ActivityIndicator, SafeAreaView, TouchableOpacity, Linking, FlatList } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
-import { getResponsiveHeight, getResponsiveWidth, SPACING } from './styles/responsive';
-import { useResumeBuilder } from './hooks/useResumeBuilder';
-import CustomText from './components/Text';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { BlurView } from 'expo-blur';
-import { TemplateId } from './context/ResumeContext';
-import templateComponents from './templates';
+import { Stack, useRouter } from 'expo-router';
 import type { ComponentType } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Dimensions, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import TemplateSelector from './components/TemplateSelector';
+import CustomText from './components/Text';
+import { TemplateId } from './context/ResumeContext';
+import { useResumeBuilder } from './hooks/useResumeBuilder';
+import { SPACING } from './styles/responsive';
+import templateComponents from './templates';
 
 const { width } = Dimensions.get('window');
-
-const TEMPLATE_LIST: { id: TemplateId; label: string }[] = [
-  { id: 'modern', label: 'Modern' },
-  { id: 'classic', label: 'Classic' },
-  // Add more templates here as you create them
-];
 
 const templateComponentsTyped: { [key in 'modern' | 'classic']: ComponentType<any> } = templateComponents;
 
@@ -27,6 +21,8 @@ export default function PreviewScreen() {
   const [isResetting, setIsResetting] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>(resumeData.template || 'modern');
   const [exportModalVisible, setExportModalVisible] = useState(false);
+  const [showBottomSheet, setShowBottomSheet] = useState(false);
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     if (!isLoading && (!resumeData || Object.keys(resumeData).length === 0)) {
@@ -86,8 +82,6 @@ export default function PreviewScreen() {
     );
   }
 
- 
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
       <Stack.Screen
@@ -108,31 +102,23 @@ export default function PreviewScreen() {
         </View>
       </ScrollView>
 
-      {/* Template Switcher */}
-      <View style={styles.flatListContainer}>
-        <FlatList
-          data={TEMPLATE_LIST}
-          horizontal
-          keyExtractor={item => item.id}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 16, alignItems: 'center' }}
-          renderItem={({ item }) => {
-            const TemplateComponent = templateComponentsTyped[item.id as 'modern' | 'classic'];
-            const isSelected = item.id === selectedTemplate;
-            return (
-              <TouchableOpacity
-                onPress={() => handleSelectTemplate(item.id)}
-                style={[
-                  styles.templatePreviewWrapper,
-                  isSelected && styles.selectedTemplate,
-                ]}
-              > 
-                <TemplateComponent resumeData={resumeData} previewMode={true} />
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
+      {/* Template Selector Button */}
+      <TouchableOpacity 
+        style={[styles.templateButton, { bottom: insets.bottom + 20 }]}
+        onPress={() => setShowBottomSheet(true)}
+      >
+        <Ionicons name="color-palette-outline" size={24} color="#fff" />
+        <CustomText style={styles.templateButtonText}>Choose Template</CustomText>
+      </TouchableOpacity>
+
+      {/* Template Selector */}
+      <TemplateSelector
+        isVisible={showBottomSheet}
+        onClose={() => setShowBottomSheet(false)}
+        resumeData={resumeData}
+        selectedTemplate={selectedTemplate}
+        onTemplateSelect={handleSelectTemplate}
+      />
     </SafeAreaView>
   );
 }
@@ -534,41 +520,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 16,
   },
-  flatListContainer: {
+  templateButton: {
     position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 20,
-    height: 110,
-    backgroundColor: '#00000099',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 16,
-    elevation: 12,
-    paddingVertical: 12,
-    justifyContent: 'center',
-  },
-  templatePreviewWrapper: {
-    marginHorizontal: 8,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: 'transparent',
-    backgroundColor: '#f4f4f4',
-    padding: 4,
+    right: SPACING.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderRadius: 25,
+    backgroundColor: '#007AFF',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 2,
-    height: getResponsiveHeight(40),
-    width: getResponsiveWidth(40),
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
   },
-  selectedTemplate: {
-    borderColor: '#007AFF',
-    backgroundColor: '#e6f0ff',
+  templateButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: SPACING.xs,
   },
 }); 

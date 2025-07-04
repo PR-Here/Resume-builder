@@ -1,5 +1,5 @@
-import { FontFamily, SkillCategory } from '../types/enums';
 import { ResumeData } from '../context/ResumeContext';
+import { FontFamily, SkillCategory } from '../types/enums';
 
 export const mockResumeData: ResumeData = {
   personalInfo: {
@@ -12,7 +12,7 @@ export const mockResumeData: ResumeData = {
     website: 'https://pankajrana-portfolio-4ure1lgxr-pankaj-ranas-projects.vercel.app',
     title: 'Senior Software Developer'
   },
-  summary: 'Dynamic Senior Software Developer with over 6 years of experience at Programming.com, specializing in React Native and Flutter to build high-performance, visually engaging mobile applications. Expert in API integration, state management, and performance optimization, with a proven track record of delivering scalable and maintainable solutions across both Android and iOS platforms. Known for thriving in collaborative, fast-paced environments, consistently delivering user-centric features, while upholding the highest standards of code quality, UI/UX design, and cross-platform consistency. Seasoned React Native Developer with comprehensive experience in building mobile applications using JavaScript and React. Possess strong skills in developing user interface components, implementing and executing testing suites for software validation, along with proficiency in modern front-end build pipelines and tools. Demonstrated ability to deliver high-quality software solutions, contributing substantially to project success.',
+  summary: 'Dynamic Senior Software Developer with over 6 years of experience at Programming.com, specializing in React Native and React.js to build high-performance, visually engaging mobile and web applications. Expert in API integration, state management, and performance optimization, with a proven track record of delivering scalable and maintainable solutions across Android, iOS, and web platforms. Known for thriving in collaborative, fast-paced environments, consistently delivering user-centric features while upholding the highest standards of code quality, UI/UX design, and cross-platform consistency. Seasoned React Native Developer with comprehensive experience in building mobile applications using JavaScript and TypeScript. Possess strong skills in developing user interface components, implementing and executing testing suites for software validation, along with proficiency in modern front-end build pipelines and tools. Demonstrated ability to deliver high-quality software solutions, contributing substantially to project success.',
   skills: [
     // Core Technologies
     {
@@ -23,56 +23,74 @@ export const mockResumeData: ResumeData = {
     },
     {
       id: "2",
-      name: 'JavaScript',
+      name: 'React.js',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "3",
-      name: 'TypeScript',
+      name: 'JavaScript',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "4",
-      name: 'ES 6+',
+      name: 'TypeScript',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "5",
-      name: 'Function Component',
+      name: 'ES 6+',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "6",
-      name: 'React Hook',
+      name: 'Function Component',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "7",
+      name: 'React Hook',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "8",
       name: 'Custom Hook',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "9",
+      name: 'JSX',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "10",
+      name: 'React Router',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
 
     // State Management
     {
-      id: "8",
+      id: "11",
       name: 'Redux Toolkit',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "9",
+      id: "12",
       name: 'Context API',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "10",
+      id: "13",
       name: 'Zustand',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -80,31 +98,31 @@ export const mockResumeData: ResumeData = {
 
     // Mobile Development
     {
-      id: "11",
+      id: "14",
       name: 'Android app',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "12",
+      id: "15",
       name: 'iOS app',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "13",
+      id: "16",
       name: 'Android Studio',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "14",
+      id: "17",
       name: 'Xcode',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "15",
+      id: "18",
       name: 'Expo',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -112,37 +130,37 @@ export const mockResumeData: ResumeData = {
 
     // Firebase Services
     {
-      id: "16",
+      id: "19",
       name: 'Firebase',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "17",
+      id: "20",
       name: 'Firebase Storage',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "18",
+      id: "21",
       name: 'Firebase Auth',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "19",
+      id: "22",
       name: 'Realtime Database',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "20",
+      id: "23",
       name: 'Crashlytics',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "21",
+      id: "24",
       name: 'Analytics',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -150,31 +168,31 @@ export const mockResumeData: ResumeData = {
 
     // Communication & Notifications
     {
-      id: "22",
+      id: "25",
       name: 'Push notification',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "23",
+      id: "26",
       name: 'OneSignal',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "24",
+      id: "27",
       name: 'Socket.io',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "25",
+      id: "28",
       name: 'Twilio',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "26",
+      id: "29",
       name: 'Agora',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -182,25 +200,25 @@ export const mockResumeData: ResumeData = {
 
     // Data Management & API
     {
-      id: "27",
+      id: "30",
       name: 'React Query',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "28",
+      id: "31",
       name: 'Axios',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "29",
+      id: "32",
       name: 'Fetch',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "30",
+      id: "33",
       name: 'API integration',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -208,25 +226,25 @@ export const mockResumeData: ResumeData = {
 
     // UI & Navigation
     {
-      id: "31",
+      id: "34",
       name: 'React Navigation',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "32",
+      id: "35",
       name: 'Application design',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "33",
+      id: "36",
       name: 'Formik',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "34",
+      id: "37",
       name: 'I18n',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -234,7 +252,7 @@ export const mockResumeData: ResumeData = {
 
     // Maps & Location
     {
-      id: "35",
+      id: "38",
       name: 'Google Maps',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -242,47 +260,74 @@ export const mockResumeData: ResumeData = {
 
     // Development Tools
     {
-      id: "36",
-      name: 'Flipper',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "37",
-      name: 'Debugging (Chrome)',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "38",
-      name: 'whyDidYouRender',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
       id: "39",
-      name: 'Version control systems',
+      name: 'Chrome DevTools',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
-
-    // Cross-Platform
     {
       id: "40",
-      name: 'Flutter',
+      name: 'React Developer Tools',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "41",
-      name: 'Dart',
+      name: 'whyDidYouRender',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "42",
+      name: 'Version control systems',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
 
+    // Web Development
+    {
+      id: "43",
+      name: 'HTML5',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "44",
+      name: 'CSS3',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "45",
+      name: 'Sass/SCSS',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "46",
+      name: 'Styled Components',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "47",
+      name: 'Material-UI',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "48",
+      name: 'Ant Design',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+
+    // Cross-Platform
+    // Removed Flutter and Dart skills
+
     // Utilities
     {
-      id: "42",
+      id: "49",
       name: 'Lodash',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -290,7 +335,7 @@ export const mockResumeData: ResumeData = {
 
     // Monetization
     {
-      id: "43",
+      id: "50",
       name: 'AdSense',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -298,7 +343,7 @@ export const mockResumeData: ResumeData = {
 
     // Authentication & Social
     {
-      id: "44",
+      id: "51",
       name: 'Social login',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -306,7 +351,7 @@ export const mockResumeData: ResumeData = {
 
     // App Store & Deployment
     {
-      id: "45",
+      id: "52",
       name: 'Publish the app (App Store and Play Store)',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -314,13 +359,13 @@ export const mockResumeData: ResumeData = {
 
     // Integration & Development
     {
-      id: "46",
+      id: "53",
       name: 'Third-Party Integration',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "47",
+      id: "54",
       name: 'SDK Integrations',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -328,25 +373,25 @@ export const mockResumeData: ResumeData = {
 
     // Quality & Maintenance
     {
-      id: "48",
+      id: "55",
       name: 'Code reviews',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "49",
+      id: "56",
       name: 'Performance Optimization',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "50",
+      id: "57",
       name: 'Troubleshooting',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "51",
+      id: "58",
       name: 'Code fixes',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -360,7 +405,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'May 2024',
       endDate: 'Present',
       current: true,
-      description: 'Designed mobile applications for Apple and Android platforms. Strong knowledge of React Native architecture, components, and lifecycle for building cross-platform mobile applications. Familiar with UI libraries like React Native Elements and Material Design for sleek and responsive user interfaces.\n\nIn-depth experience developing mobile apps using Flutter and Dart, building visually attractive UIs with widgets, stateful, and stateless components. Proficient in custom widget creation, animations, and platform channel integration for native features.',
+      description: 'Designed mobile applications for Apple and Android platforms. Strong knowledge of React Native architecture, components, and lifecycle for building cross-platform mobile applications. Familiar with UI libraries like React Native Elements and Material Design for sleek and responsive user interfaces.\n\nExpert in React.js development for web applications, building responsive and interactive user interfaces. Proficient in modern React patterns including hooks, context API, and component composition. Skilled in creating reusable components and implementing efficient state management solutions.\n\nHands-on experience with RESTful APIs and third-party libraries for seamless backend integration. Comfortable working with TypeScript for type safety and scalable code architecture. Proficient in debugging, profiling, and optimizing performance across different devices. Experienced in setting up navigation flows using React Navigation and handling deep linking. Adept at using Git for version control and participating in code reviews to maintain code quality. Passionate about delivering pixel-perfect UI and collaborating closely with design and product teams for flawless execution.',
       location: 'Gurugram, Haryana',
       achievements: []
     },
@@ -371,7 +416,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Aug 2023',
       endDate: 'May 2024',
       current: false,
-      description: 'Cross-platform developer skilled in React Native and React.js for web applications, adept at crafting responsive, user-friendly mobile applications with expertise in API integration, state management, and performance optimization.\n\nProficient in Agile methodologies, version control, and committed to continuous learning.',
+      description: 'Cross-platform developer skilled in React Native and React.js for web applications, adept at crafting responsive, user-friendly mobile applications with expertise in API integration, state management, and performance optimization.\n\nProficient in Agile methodologies, version control, and committed to continuous learning.\n\nExperienced in building scalable, maintainable codebases with a strong focus on performance and cross-platform consistency. Collaborates effectively with cross-functional teams, prioritizing clean architecture, reusable components, and timely delivery of high-impact features.\n\nWell-versed in debugging, testing, and CI/CD practices to ensure high-quality code and smooth deployments. Strong foundation in JavaScript and TypeScript, with the ability to quickly adapt to new technologies and frameworks.\n\nPassionate about creating seamless user experiences and continuously improving product functionality through data-driven insights and user feedback.\n\nDemonstrated leadership in driving end-to-end feature development, mentoring junior developers, and owning critical modules from design to deployment. Strong communication skills and a proactive mindset enable successful coordination with product managers, designers, and QA teams to ensure business goals are met efficiently.',
       location: 'Noida, Uttar Pradesh',
       achievements: []
     },
@@ -382,7 +427,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Jan 2021',
       endDate: 'Aug 2023',
       current: false,
-      description: 'Wrote clean, maintainable, and efficient code.\nBuilt and maintained a reusable codebase for future use.\nCollaborated with the rest of the engineering team to design and launch new features.\nIdentified and fixed bugs, and performance issues.\nEnsured the application was up to date with the latest industry standards.\nWorked with the product and design teams to understand end-user requirements and use cases, and to translate them into a pragmatic and effective technical solution.\nSupported and maintained existing applications, and troubleshot any issues that may arise.',
+      description: 'Wrote clean, maintainable, and efficient code.\n\nBuilt and maintained a reusable codebase for future use.\n\nCollaborated with the rest of the engineering team to design and launch new features.\n\nIdentified and fixed bugs, and performance issues.\n\nEnsured the application was up to date with the latest industry standards.\n\nWorked with the product and design teams to understand end-user requirements and use cases, and to translate them into a pragmatic and effective technical solution.\n\nSupported and maintained existing applications, and troubleshot any issues that may arise.\n\nActively participated in code reviews, sprint planning, and knowledge-sharing sessions to ensure continuous team improvement and code quality.\n\nIntegrated third-party libraries and APIs to extend app functionality across diverse use cases.\n\nOptimized application performance through profiling, lazy loading, and efficient rendering strategies.\n\nContributed to documentation and onboarding resources to support new team members and ensure consistency in development practices.',
       location: 'Noida, Uttar Pradesh',
       achievements: []
     },
@@ -393,7 +438,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Sep 2019',
       endDate: 'Jan 2021',
       current: false,
-      description: 'Discussed issues with team members to provide resolution and apply best practices.\nCollaborated with project managers to select ambitious, yet realistic, coding milestones on pre-release software project development.\nUpdated old code bases to modern development standards, improving functionality.',
+      description: 'Discussed issues with team members to provide resolution and apply best practices.\n\nCollaborated with project managers to select ambitious, yet realistic, coding milestones on pre-release software project development.\n\nUpdated old code bases to modern development standards, improving functionality.\n\nActively participated in sprint planning and daily stand-ups to ensure alignment with project goals and timelines.\n\nContributed to knowledge-sharing sessions and documentation to support team onboarding and process improvements.\n\nPerformed thorough code reviews and provided constructive feedback to maintain high code quality and consistency.\n\nAssisted in debugging complex issues during staging and production phases, ensuring smooth app performance across platforms.',
       location: 'Mumbai, Maharashtra',
       achievements: []
     }
@@ -497,7 +542,7 @@ export const mockResumeData: ResumeData = {
   certifications: [
     {
       id:"1",
-      name: 'Learn Flutter & Dart to Build iOS & Android Apps',
+      name: 'React.js Complete Guide - Build Modern Web Applications',
       issuer: 'Udemy',
       date: '2023',
       credentialId: '1234567890',

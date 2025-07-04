@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { isEmpty, map, isNil } from 'lodash';
-import { FONT_SIZE, SPACING, BORDER_RADIUS, INPUT_HEIGHT } from '../styles/responsive';
+import { isEmpty, isNil, map } from 'lodash';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { BORDER_RADIUS, FONT_SIZE, INPUT_HEIGHT, SPACING } from '../styles/responsive';
 import { WorkExperienceFormProps } from '../types/interfaces';
-import Text from './Text';
+import { validateDateRange, validateField } from '../utils/validationUtils';
 import DateInput from './DateInput';
-import { validateField, validateDateRange } from '../utils/validationUtils';
+import Text from './Text';
 
 export default function WorkExperienceForm({ experiences, onChange, fontFamily }: WorkExperienceFormProps) {
   const [errors, setErrors] = useState<Record<string, Record<string, string>>>({});
+
 
   const handleUpdateExperience = (id: string, field: string, value: any) => {
     const updatedExperiences = map(experiences, experience => {
@@ -142,7 +143,9 @@ export default function WorkExperienceForm({ experiences, onChange, fontFamily }
         List your work experience in reverse chronological order. Include your roles, responsibilities, and achievements.
       </Text>
 
-      {map(experiences, (experience, index) => (
+      {map(experiences, (experience, index) => {
+        console.log('Description for experience', experience.id, ':', experience.description);
+        return (
         <View key={experience.id} style={styles.experienceCard}>
           <View style={styles.cardHeader}>
             <Text style={[styles.cardTitle, { fontFamily }]}>
@@ -245,8 +248,8 @@ export default function WorkExperienceForm({ experiences, onChange, fontFamily }
                 placeholder="Describe your responsibilities and achievements..."
                 placeholderTextColor="#999"
                 multiline
-                numberOfLines={4}
                 textAlignVertical="top"
+                scrollEnabled={true}
               />
               {!isNil(errors[experience.id]?.description) && (
                 <Text style={[styles.errorText, { fontFamily }]}>{errors[experience.id].description}</Text>
@@ -282,7 +285,8 @@ export default function WorkExperienceForm({ experiences, onChange, fontFamily }
             </View>
           </View>
         </View>
-      ))}
+        );
+      })}
 
       <TouchableOpacity style={styles.addButton} onPress={handleAddExperience}>
         <Ionicons name="add" size={24} color="#fff" />
@@ -359,7 +363,8 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xs,
   } as TextStyle,
   textArea: {
-    height: 100,
+    minHeight: 200,
+    maxHeight: 800,
     backgroundColor: '#fff',
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
