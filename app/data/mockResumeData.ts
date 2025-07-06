@@ -1,4 +1,4 @@
-import { ResumeData } from '../context/ResumeContext';
+import { ResumeData } from '../store/resumeStore';
 import { FontFamily, SkillCategory } from '../types/enums';
 
 export const mockResumeData: ResumeData = {
@@ -405,7 +405,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'May 2024',
       endDate: 'Present',
       current: true,
-      description: 'Designed mobile applications for Apple and Android platforms. Strong knowledge of React Native architecture, components, and lifecycle for building cross-platform mobile applications. Familiar with UI libraries like React Native Elements and Material Design for sleek and responsive user interfaces.\n\nExpert in React.js development for web applications, building responsive and interactive user interfaces. Proficient in modern React patterns including hooks, context API, and component composition. Skilled in creating reusable components and implementing efficient state management solutions.\n\nHands-on experience with RESTful APIs and third-party libraries for seamless backend integration. Comfortable working with TypeScript for type safety and scalable code architecture. Proficient in debugging, profiling, and optimizing performance across different devices. Experienced in setting up navigation flows using React Navigation and handling deep linking. Adept at using Git for version control and participating in code reviews to maintain code quality. Passionate about delivering pixel-perfect UI and collaborating closely with design and product teams for flawless execution.',
+      description: 'Designed mobile applications for Apple and Android platforms. Strong knowledge of React Native architecture, components, and lifecycle for building cross-platform mobile applications. Familiar with UI libraries like React Native Elements and Material Design for sleek and responsive user interfaces.\n\nExpert in React.js development for web applications, building responsive and interactive user interfaces. Proficient in modern React patterns including hooks, context API, and component composition. Skilled in creating reusable components and implementing efficient state management solutions.\n\nHands-on experience with RESTful APIs and third-party libraries for seamless backend integration. Comfortable working with TypeScript for type safety and scalable code architecture. Proficient in debugging, profiling, and optimizing performance across different devices. Experienced in setting up navigation flows using React Navigation and handling deep linking. Adept at using Git for version control and participating in code reviews to maintain code quality.',
       location: 'Gurugram, Haryana',
       achievements: []
     },
@@ -416,7 +416,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Aug 2023',
       endDate: 'May 2024',
       current: false,
-      description: 'Cross-platform developer skilled in React Native and React.js for web applications, adept at crafting responsive, user-friendly mobile applications with expertise in API integration, state management, and performance optimization.\n\nProficient in Agile methodologies, version control, and committed to continuous learning.\n\nExperienced in building scalable, maintainable codebases with a strong focus on performance and cross-platform consistency. Collaborates effectively with cross-functional teams, prioritizing clean architecture, reusable components, and timely delivery of high-impact features.\n\nWell-versed in debugging, testing, and CI/CD practices to ensure high-quality code and smooth deployments. Strong foundation in JavaScript and TypeScript, with the ability to quickly adapt to new technologies and frameworks.\n\nPassionate about creating seamless user experiences and continuously improving product functionality through data-driven insights and user feedback.\n\nDemonstrated leadership in driving end-to-end feature development, mentoring junior developers, and owning critical modules from design to deployment. Strong communication skills and a proactive mindset enable successful coordination with product managers, designers, and QA teams to ensure business goals are met efficiently.',
+      description: 'Cross-platform developer skilled in React Native and React.js for web applications, adept at crafting responsive, user-friendly mobile applications with expertise in API integration, state management, and performance optimization.\n\nProficient in Agile methodologies, version control, and committed to continuous learning.\n\nExperienced in building scalable, maintainable codebases with a strong focus on performance and cross-platform consistency. Collaborates effectively with cross-functional teams, prioritizing clean architecture, reusable components, and timely delivery of high-impact features.\n\nWell-versed in debugging, testing, and CI/CD practices to ensure high-quality code and smooth deployments. Strong foundation in JavaScript and TypeScript, with the ability to quickly adapt to new technologies and frameworks.\n\nPassionate about creating seamless user experiences and continuously improving product functionality through data-driven insights and user feedback.\n\nDemonstrated leadership in driving end-to-end feature development, mentoring junior developers, and owning critical modules from design to deployment.',
       location: 'Noida, Uttar Pradesh',
       achievements: []
     },
@@ -427,7 +427,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Jan 2021',
       endDate: 'Aug 2023',
       current: false,
-      description: 'Wrote clean, maintainable, and efficient code.\n\nBuilt and maintained a reusable codebase for future use.\n\nCollaborated with the rest of the engineering team to design and launch new features.\n\nIdentified and fixed bugs, and performance issues.\n\nEnsured the application was up to date with the latest industry standards.\n\nWorked with the product and design teams to understand end-user requirements and use cases, and to translate them into a pragmatic and effective technical solution.\n\nSupported and maintained existing applications, and troubleshot any issues that may arise.\n\nActively participated in code reviews, sprint planning, and knowledge-sharing sessions to ensure continuous team improvement and code quality.\n\nIntegrated third-party libraries and APIs to extend app functionality across diverse use cases.\n\nOptimized application performance through profiling, lazy loading, and efficient rendering strategies.\n\nContributed to documentation and onboarding resources to support new team members and ensure consistency in development practices.',
+      description: 'Wrote clean, maintainable, and efficient code.\n\nBuilt and maintained a reusable codebase for future use.\n\nCollaborated with the rest of the engineering team to design and launch new features.\n\nIdentified and fixed bugs, and performance issues.\n\nEnsured the application was up to date with the latest industry standards.\n\nWorked with the product and design teams to understand end-user requirements and use cases, and to translate them into a pragmatic and effective technical solution.\n\nSupported and maintained existing applications, and troubleshot any issues that may arise.\n\nActively participated in code reviews, sprint planning, and knowledge-sharing sessions to ensure continuous team improvement and code quality.\n\nIntegrated third-party libraries and APIs to extend app functionality across diverse use cases.',
       location: 'Noida, Uttar Pradesh',
       achievements: []
     },
@@ -438,7 +438,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'Sep 2019',
       endDate: 'Jan 2021',
       current: false,
-      description: 'Discussed issues with team members to provide resolution and apply best practices.\n\nCollaborated with project managers to select ambitious, yet realistic, coding milestones on pre-release software project development.\n\nUpdated old code bases to modern development standards, improving functionality.\n\nActively participated in sprint planning and daily stand-ups to ensure alignment with project goals and timelines.\n\nContributed to knowledge-sharing sessions and documentation to support team onboarding and process improvements.\n\nPerformed thorough code reviews and provided constructive feedback to maintain high code quality and consistency.\n\nAssisted in debugging complex issues during staging and production phases, ensuring smooth app performance across platforms.',
+      description: 'Discussed issues with team members to provide resolution and apply best practices.\n\nCollaborated with project managers to select ambitious, yet realistic, coding milestones on pre-release software project development.\n\nUpdated old code bases to modern development standards, improving functionality.',
       location: 'Mumbai, Maharashtra',
       achievements: []
     }
@@ -449,7 +449,7 @@ export const mockResumeData: ResumeData = {
       name: 'Zupee Ludo',
       duration: '16 Months',
       description: 'A mobile gaming application for Ludo with real-time multiplayer functionality.',
-      technologies: ['React Native', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'payment gateway'],
+      technologies: ['React Native', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'payment gateway', 'UPI payment', 'In-app update'],
       link: 'https://play.google.com/store/apps/details?id=com.ludosupreme.zupee',
       role: 'Developer',
       current: false
@@ -459,7 +459,7 @@ export const mockResumeData: ResumeData = {
       name: 'Capri Loans',
       duration: '11 Months',
       description: 'A loan management application with payment integration and location services.',
-      technologies: ['React Native', 'Redux', 'Context API', 'Google Map', 'push notification', 'in-app update', 'payment gateway'],
+      technologies: ['React Native', 'Redux', 'Context API', 'Google Map', 'push notification', 'in-app update', 'payment gateway','Native Modules','CleverTap'],
       link: 'https://play.google.com/store/apps/details?id=com.capriloans.consumer',
       role: 'Developer',
       current: false
@@ -469,7 +469,7 @@ export const mockResumeData: ResumeData = {
       name: 'Tez Rummy',
       duration: '18 Months',
       description: 'A card game application with real-time multiplayer functionality and payment integration.',
-      technologies: ['React-native', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry'],
+      technologies: ['React-native', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry', 'Native Modules'],
       link: 'https://play.google.com/store/apps/details?id=com.battles99.rummyandroid',
       role: 'Developer',
       current: true

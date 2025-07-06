@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ResumeData } from '../context/ResumeContext';
+import { ResumeData } from '../store/resumeStore';
 import { Education as EducationType, Language, Project, Skill, WorkExperience } from '../types/interfaces';
 
 interface ClassicTemplateProps {

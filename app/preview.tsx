@@ -6,8 +6,8 @@ import { ActivityIndicator, Dimensions, Platform, SafeAreaView, ScrollView, Styl
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import TemplateSelector from './components/TemplateSelector';
 import CustomText from './components/Text';
-import { TemplateId } from './context/ResumeContext';
 import { useResumeBuilder } from './hooks/useResumeBuilder';
+import { TemplateId } from './store/resumeStore';
 import { SPACING } from './styles/responsive';
 import templateComponents from './templates';
 

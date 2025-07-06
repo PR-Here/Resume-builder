@@ -1,10 +1,11 @@
 import * as FileSystem from "expo-file-system";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
+import React from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import CustomModal from "../components/CustomModal";
 import CustomText from "../components/Text";
-import { TemplateId } from "../context/ResumeContext";
+import { TemplateId } from "../store/resumeStore";
 
 interface ExportModalProps {
   resumeData: any;

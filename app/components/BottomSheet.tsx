@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import type { ComponentType } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { TemplateId } from '../context/ResumeContext';
+import { TemplateId } from '../store/resumeStore';
 import { getResponsiveHeight, getResponsiveWidth } from '../styles/responsive';
 import templateComponents from '../templates';
 import CustomText from './Text';

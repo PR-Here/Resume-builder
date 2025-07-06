@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import React from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { TemplateId } from '../context/ResumeContext';
+import { TemplateId } from '../store/resumeStore';
 import { getResponsiveHeight, getResponsiveWidth } from '../styles/responsive';
 import templateComponents from '../templates';
 import ReusableBottomSheet from './ReusableBottomSheet';

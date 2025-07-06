@@ -1,17 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ResumeSection } from '../types/enums';
-import { 
-  PersonalInfo, 
-  WorkExperience, 
-  Education, 
-  Project, 
-  Certification, 
-  Language, 
-  Theme,
-  Skill
-} from '../types/interfaces';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { mockResumeData } from '../data/mockResumeData';
+import { ResumeSection } from '../types/enums';
+import {
+    Certification,
+    Education,
+    Language,
+    PersonalInfo,
+    Project,
+    Skill,
+    Theme,
+    WorkExperience
+} from '../types/interfaces';
 
 export type TemplateId = 'modern' | 'classic' | 'creative' | 'minimal' | 'professional';
 
@@ -72,6 +72,7 @@ interface ResumeContextType {
   handleThemeChange: (theme: Theme) => void;
   handleTemplateChange: (template: TemplateId) => void;
   resetToMockData: () => Promise<void>;
+  forceReloadMockData: () => Promise<void>;
 }
 
 export const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
@@ -93,6 +94,9 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
 
   const loadResumeData = async () => {
     try {
+      // In development mode, you can force using mock data by uncommenting this line:
+      // await AsyncStorage.removeItem('resumeData');
+      
       const savedData = await AsyncStorage.getItem('resumeData');
       if (savedData) {
         const parsedData = JSON.parse(savedData);
@@ -258,6 +262,18 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const forceReloadMockData = async () => {
+    try {
+      await AsyncStorage.removeItem('resumeData');
+      setResumeData(mockResumeData);
+      await AsyncStorage.setItem('resumeData', JSON.stringify(mockResumeData));
+      console.log('Mock data reloaded successfully');
+    } catch (error) {
+      console.error('Error forcing reload of mock data:', error);
+      setResumeData(emptyResumeData);
+    }
+  };
+
   const value = {
     resumeData,
     currentSection,
@@ -274,6 +290,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     handleThemeChange,
     handleTemplateChange,
     resetToMockData,
+    forceReloadMockData,
   };
 
   return <ResumeContext.Provider value={value}>{children}</ResumeContext.Provider>;

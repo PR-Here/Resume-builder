@@ -1,42 +1,24 @@
-import React, { useState } from 'react';
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FontContext } from './context/FontContext';
 import { FontFamily } from './types/enums';
-import { ResumeProvider } from './context/ResumeContext';
 import { loadFonts } from './utils/fonts';
 
 export default function Layout() {
   const [fontFamily, setFontFamily] = useState<FontFamily>(FontFamily.DMSANS_REGULAR);
-  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   React.useEffect(() => {
-    async function prepare() {
-      try {
-        await loadFonts();
-        setFontsLoaded(true);
-      } catch (e) {
-        console.warn(e);
-      }
-    }
-    prepare();
+    loadFonts();
   }, []);
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
-    <ResumeProvider>
-      <FontContext.Provider value={{ fontFamily, setFontFamily }}>
+    <FontContext.Provider value={{ fontFamily, setFontFamily }}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <Stack
           screenOptions={{
-            headerStyle: {
-              backgroundColor: '#fff',
-            },
-            headerShadowVisible: false,
-            headerTitleStyle: {
-              fontFamily: fontFamily,
-            },
+            headerShown: false,
           }}
         >
           <Stack.Screen
@@ -72,7 +54,8 @@ export default function Layout() {
             }}
           />
         </Stack>
-      </FontContext.Provider>
-    </ResumeProvider>
+        <StatusBar style="auto" />
+      </GestureHandlerRootView>
+    </FontContext.Provider>
   );
 }

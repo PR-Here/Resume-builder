@@ -1,38 +1,35 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-  Modal,
-  ViewStyle,
-} from "react-native";
-import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { SPACING, BORDER_RADIUS, SHADOW, FONT_SIZE } from "./styles/responsive";
-import { ResumeSection } from "./types/enums";
-import { useFont } from "./hooks/useFont";
-import { useResumeBuilder } from "./hooks/useResumeBuilder";
-import { useModal } from "./hooks/useModal";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import type { MaterialTopTabNavigationEventMap } from "@react-navigation/material-top-tabs";
 import type { NavigationState, ParamListBase } from "@react-navigation/native";
-import CustomText from "./components/Text";
-import Button from "./components/Button";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import {
+  Platform,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View
+} from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import CertificationsForm from "./components/CertificationsForm";
+import DevTools from "./components/DevTools";
+import EducationForm from "./components/EducationForm";
+import Footer from "./components/Footer";
+import LanguagesForm from "./components/LanguagesForm";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import ProfessionalSummaryForm from "./components/ProfessionalSummaryForm";
-import SkillsForm from "./components/SkillsForm";
-import WorkExperienceForm from "./components/WorkExperienceForm";
-import EducationForm from "./components/EducationForm";
 import ProjectsForm from "./components/ProjectsForm";
-import CertificationsForm from "./components/CertificationsForm";
-import LanguagesForm from "./components/LanguagesForm";
+import SkillsForm from "./components/SkillsForm";
+import CustomText from "./components/Text";
 import ThemeCustomizer from "./components/ThemeCustomizer";
-import Footer from "./components/Footer";
+import WorkExperienceForm from "./components/WorkExperienceForm";
+import { useFont } from "./hooks/useFont";
+import { useModal } from "./hooks/useModal";
+import { useResumeBuilder } from "./hooks/useResumeBuilder";
 import ExportModal from "./modal/ExportModal";
+import { BORDER_RADIUS, FONT_SIZE, SPACING } from "./styles/responsive";
 import templateComponents from './templates';
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { ResumeSection } from "./types/enums";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -265,8 +262,11 @@ export default function ResumeBuilderScreen() {
           onExport={() => openModal()}
           onTemplate={() => router.push("templates" as any)}
           onTheme={openModal}
-          style={[styles.footer]}
+          style={styles.footer}
         />
+
+        {/* Development Tools - Remove in production */}
+        <DevTools fontFamily={fontFamily} />
 
         <ThemeCustomizer
           theme={resumeData?.theme}
