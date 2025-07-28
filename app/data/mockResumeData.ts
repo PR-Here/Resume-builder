@@ -10,9 +10,9 @@ export const mockResumeData: ResumeData = {
     linkedin: 'https://www.linkedin.com/in/pankaj-rana-b10941153',
     github: 'https://github.com/pr-here',
     website: 'https://pankajrana-portfolio-4ure1lgxr-pankaj-ranas-projects.vercel.app',
-    title: 'Senior Software Developer'
+    title: 'Full Stack Mobile Developer (React Native, Node.js)'
   },
-  summary: 'Dynamic Senior Software Developer with over 6 years of experience at Programming.com, specializing in React Native and React.js to build high-performance, visually engaging mobile and web applications. Expert in API integration, state management, and performance optimization, with a proven track record of delivering scalable and maintainable solutions across Android, iOS, and web platforms. Known for thriving in collaborative, fast-paced environments, consistently delivering user-centric features while upholding the highest standards of code quality, UI/UX design, and cross-platform consistency. Seasoned React Native Developer with comprehensive experience in building mobile applications using JavaScript and TypeScript. Possess strong skills in developing user interface components, implementing and executing testing suites for software validation, along with proficiency in modern front-end build pipelines and tools. Demonstrated ability to deliver high-quality software solutions, contributing substantially to project success.',
+  summary: 'Dynamic Full Stack Mobile Developer with over 6 years of experience at Programming.com, specializing in React Native for mobile applications and Node.js for backend development. Expert in building end-to-end mobile solutions with robust server-side APIs, database management, and cloud infrastructure. Proficient in API development, authentication systems, real-time communication, and deployment strategies. Known for delivering scalable, high-performance mobile applications with seamless backend integration, database optimization, and cloud services implementation. Seasoned developer with comprehensive experience in JavaScript, TypeScript, and modern development practices. Possess strong skills in developing both client-side mobile interfaces and server-side business logic, implementing comprehensive testing suites, and managing deployment pipelines. Demonstrated ability to architect and deliver complete mobile solutions from database design to app store deployment, contributing substantially to project success and technical excellence.',
   skills: [
     // Core Technologies
     {
@@ -23,7 +23,7 @@ export const mockResumeData: ResumeData = {
     },
     {
       id: "2",
-      name: 'React.js',
+      name: 'Node.js',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
@@ -71,7 +71,7 @@ export const mockResumeData: ResumeData = {
     },
     {
       id: "10",
-      name: 'React Router',
+      name: 'Express.js',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
@@ -96,33 +96,65 @@ export const mockResumeData: ResumeData = {
       level: 5
     },
 
-    // Mobile Development
+    // Backend Development
     {
       id: "14",
-      name: 'Android app',
+      name: 'RESTful APIs',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "15",
-      name: 'iOS app',
+      name: 'GraphQL',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "16",
-      name: 'Android Studio',
+      name: 'MongoDB',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "17",
-      name: 'Xcode',
+      name: 'PostgreSQL',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
       id: "18",
+      name: 'MySQL',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+
+    // Mobile Development
+    {
+      id: "19",
+      name: 'Android app',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "20",
+      name: 'iOS app',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "21",
+      name: 'Android Studio',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "22",
+      name: 'Xcode',
+      category: SkillCategory.TECHNICAL,
+      level: 5
+    },
+    {
+      id: "23",
       name: 'Expo',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -130,37 +162,37 @@ export const mockResumeData: ResumeData = {
 
     // Firebase Services
     {
-      id: "19",
+      id: "24",
       name: 'Firebase',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "20",
+      id: "25",
       name: 'Firebase Storage',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "21",
+      id: "26",
       name: 'Firebase Auth',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "22",
+      id: "27",
       name: 'Realtime Database',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "23",
+      id: "28",
       name: 'Crashlytics',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "24",
+      id: "29",
       name: 'Analytics',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -168,31 +200,31 @@ export const mockResumeData: ResumeData = {
 
     // Communication & Notifications
     {
-      id: "25",
+      id: "30",
       name: 'Push notification',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "26",
+      id: "31",
       name: 'OneSignal',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "27",
+      id: "32",
       name: 'Socket.io',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "28",
+      id: "33",
       name: 'Twilio',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "29",
+      id: "34",
       name: 'Agora',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -200,25 +232,25 @@ export const mockResumeData: ResumeData = {
 
     // Data Management & API
     {
-      id: "30",
+      id: "35",
       name: 'React Query',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "31",
+      id: "36",
       name: 'Axios',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "32",
+      id: "37",
       name: 'Fetch',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "33",
+      id: "38",
       name: 'API integration',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -226,25 +258,25 @@ export const mockResumeData: ResumeData = {
 
     // UI & Navigation
     {
-      id: "34",
+      id: "39",
       name: 'React Navigation',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "35",
+      id: "40",
       name: 'Application design',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "36",
+      id: "41",
       name: 'Formik',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "37",
+      id: "42",
       name: 'I18n',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -252,7 +284,7 @@ export const mockResumeData: ResumeData = {
 
     // Maps & Location
     {
-      id: "38",
+      id: "43",
       name: 'Google Maps',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -260,25 +292,25 @@ export const mockResumeData: ResumeData = {
 
     // Development Tools
     {
-      id: "39",
+      id: "44",
       name: 'Chrome DevTools',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "40",
+      id: "45",
       name: 'React Developer Tools',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "41",
+      id: "46",
       name: 'whyDidYouRender',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "42",
+      id: "47",
       name: 'Version control systems',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -286,48 +318,45 @@ export const mockResumeData: ResumeData = {
 
     // Web Development
     {
-      id: "43",
+      id: "48",
       name: 'HTML5',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "44",
+      id: "49",
       name: 'CSS3',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "45",
+      id: "50",
       name: 'Sass/SCSS',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "46",
+      id: "51",
       name: 'Styled Components',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "47",
+      id: "52",
       name: 'Material-UI',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "48",
+      id: "53",
       name: 'Ant Design',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
 
-    // Cross-Platform
-    // Removed Flutter and Dart skills
-
     // Utilities
     {
-      id: "49",
+      id: "54",
       name: 'Lodash',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -335,7 +364,7 @@ export const mockResumeData: ResumeData = {
 
     // Monetization
     {
-      id: "50",
+      id: "55",
       name: 'AdSense',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -343,7 +372,7 @@ export const mockResumeData: ResumeData = {
 
     // Authentication & Social
     {
-      id: "51",
+      id: "56",
       name: 'Social login',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -351,7 +380,7 @@ export const mockResumeData: ResumeData = {
 
     // App Store & Deployment
     {
-      id: "52",
+      id: "57",
       name: 'Publish the app (App Store and Play Store)',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -359,13 +388,13 @@ export const mockResumeData: ResumeData = {
 
     // Integration & Development
     {
-      id: "53",
+      id: "58",
       name: 'Third-Party Integration',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "54",
+      id: "59",
       name: 'SDK Integrations',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -373,25 +402,25 @@ export const mockResumeData: ResumeData = {
 
     // Quality & Maintenance
     {
-      id: "55",
+      id: "60",
       name: 'Code reviews',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "56",
+      id: "61",
       name: 'Performance Optimization',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "57",
+      id: "62",
       name: 'Troubleshooting',
       category: SkillCategory.TECHNICAL,
       level: 5
     },
     {
-      id: "58",
+      id: "63",
       name: 'Code fixes',
       category: SkillCategory.TECHNICAL,
       level: 5
@@ -405,7 +434,7 @@ export const mockResumeData: ResumeData = {
       startDate: 'May 2024',
       endDate: 'Present',
       current: true,
-      description: 'Designed mobile applications for Apple and Android platforms. Strong knowledge of React Native architecture, components, and lifecycle for building cross-platform mobile applications. Familiar with UI libraries like React Native Elements and Material Design for sleek and responsive user interfaces.\n\nExpert in React.js development for web applications, building responsive and interactive user interfaces. Proficient in modern React patterns including hooks, context API, and component composition. Skilled in creating reusable components and implementing efficient state management solutions.\n\nHands-on experience with RESTful APIs and third-party libraries for seamless backend integration. Comfortable working with TypeScript for type safety and scalable code architecture. Proficient in debugging, profiling, and optimizing performance across different devices. Experienced in setting up navigation flows using React Navigation and handling deep linking. Adept at using Git for version control and participating in code reviews to maintain code quality.',
+      description: 'Leading full stack mobile development initiatives with focus on scalable architecture and team mentorship. Architecting complex mobile applications with microservices backend using Node.js, Express.js, and containerized deployments with Docker and Kubernetes.\n\nSpearheading database optimization strategies using MongoDB and PostgreSQL, implementing advanced caching mechanisms with Redis, and designing GraphQL APIs for efficient data fetching. Leading the implementation of real-time features using Socket.io and WebRTC for video/audio communication.\n\nMentoring junior developers, conducting code reviews, and establishing best practices for full stack development. Collaborating with DevOps teams for CI/CD pipeline optimization and cloud infrastructure management on AWS and Google Cloud Platform.\n\nDriving performance optimization initiatives across mobile and backend systems, implementing monitoring solutions with Prometheus and Grafana, and ensuring high availability and scalability of production systems.',
       location: 'Gurugram, Haryana',
       achievements: []
     },
@@ -478,20 +507,20 @@ export const mockResumeData: ResumeData = {
       id:"4",
       name: 'TechXpress',
       duration: '10 Months',
-      description: 'A technology service platform with payment and analytics integration.',
-      technologies: ['React-native', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry', 'analytics'],
+      description: 'A full stack technology service platform with backend services, payment integration, and analytics.',
+      technologies: ['React-native', 'Node.js', 'Express.js', 'PostgreSQL', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry', 'analytics'],
       link: 'https://play.google.com/store/apps/details?id=com.capri.techxpress.cgcl',
-      role: 'Developer',
+      role: 'Full Stack Developer',
       current: false
     },
     {
       id:"5",
       name: 'Hobbytwin',
       duration: '6 Months',
-      description: 'A social platform for hobby enthusiasts with social login and analytics.',
-      technologies: ['React Native', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'Social Login'],
+      description: 'A full stack social platform for hobby enthusiasts with backend services, social login, and analytics.',
+      technologies: ['React Native', 'Node.js', 'Express.js', 'MongoDB', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'Social Login'],
       link: 'https://play.google.com/store/apps/details?id=com.hobbytwin.hobbytwin',
-      role: 'Developer',
+      role: 'Full Stack Developer',
       current: false
     },
     {
@@ -542,11 +571,11 @@ export const mockResumeData: ResumeData = {
   certifications: [
     {
       id:"1",
-      name: 'React.js Complete Guide - Build Modern Web Applications',
+      name: 'Node.js Complete Guide - Build Backend API',
       issuer: 'Udemy',
       date: '2023',
-      credentialId: '1234567890',
-      link: 'https://www.udemy.com/certificate/UC-1234567890'
+      credentialId: '9876543210', 
+      link: 'https://www.udemy.com/certificate/UC-9876543210'
     }
   ],
   languages: [
