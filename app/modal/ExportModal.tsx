@@ -2,16 +2,17 @@ import * as FileSystem from "expo-file-system";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import React from 'react';
-import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import CustomModal from "../components/CustomModal";
 import CustomText from "../components/Text";
+import ClassicTemplate from "../templates/ClassicTemplate";
 import { TemplateId } from "../store/resumeStore";
 
 interface ExportModalProps {
   resumeData: any;
   isOpen: boolean;
   onClose: () => void;
-  SelectedTemplateComponent: React.ComponentType<{
+  SelectedTemplateComponent?: React.ComponentType<{
     resumeData: any;
     previewMode: boolean;
     fontSize: number;
@@ -24,6 +25,8 @@ export default function ExportModal({
   resumeData,
   SelectedTemplateComponent,
 }: ExportModalProps) {
+  const [showPreview, setShowPreview] = React.useState(true);
+  const PreviewTemplate = SelectedTemplateComponent || ClassicTemplate;
   // Helper function to format URLs properly
   const formatUrl = (url: string) => {
     if (!url) return '';
@@ -33,223 +36,310 @@ export default function ExportModal({
     return `https://${url}`;
   };
 
+  const escapeHtml = (text: string) => {
+    if (!text) return '';
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  };
+
   const generateHTML = (template: TemplateId) => {
     const { personalInfo, summary, skills, experiences, education, projects, certifications, languages } = resumeData;
-    
-    // Determine number of columns based on skill length
-    const numColumns = skills.length > 20 ? 3 : skills.length > 10 ? 2 : 1;
-    const skillsColumns: any[][] = Array.from({ length: numColumns }, () => []);
-    skills.forEach((skill: any, index: number) => {
-      skillsColumns[index % numColumns].push(skill);
-    });
-    
-    const skillsList = skillsColumns.map((column, columnIndex) => `
-      <div style="flex: 1; margin-right: ${columnIndex < numColumns - 1 ? '16px' : '0'};">
-        ${column.map((skill: any) => `<p style="margin: 0 0 2px 0; color: #000; font-size: 14px; line-height: 18px; font-family: 'Poppins', sans-serif;">• ${skill.name}</p>`).join('')}
-      </div>
-    `).join('');
-    
-    const experienceList = experiences.map((exp: any) => `
-      <div style="margin-bottom: 8px; page-break-inside: avoid;">
-        <h3 style="color: #000; margin: 0 0 4px 0; font-size: 18px; font-weight: 600; font-family: 'Poppins', sans-serif;">${exp.position} @ ${exp.company}</h3>
-        <p style="color: #000; margin: 0 0 4px 0; font-size: 15px; font-family: 'Poppins', sans-serif;">${exp.startDate} - ${exp.endDate} | ${exp.location}</p>
-        <p style="margin: 0; color: #000; font-size: 14px; line-height: 18px; font-family: 'Poppins', sans-serif;">${exp.description}</p>
-      </div>
-    `).join('');
-    
-    const educationList = education.map((edu: any) => `
-      <div style="margin-bottom: 16px;">
-        <h3 style="color: #000; margin: 0 0 4px 0; font-size: 18px; font-weight: 600; font-family: 'Poppins', sans-serif;">${edu.degree} - ${edu.institution}</h3>
-        <p style="color: #000; margin: 0; font-size: 14px; font-family: 'Poppins', sans-serif;">${edu.year} | ${edu.location}</p>
-      </div>
-    `).join('');
-    
-    const projectList = projects.map((project: any) => {
-      // Create technology tags that wrap to new lines
-      const techTags = project.technologies.map((tech: string) => 
-        `<span style="display: inline-block; background-color: #f0f0f0; padding: 2px 8px; margin: 2px 4px 2px 0; border-radius: 4px; font-size: 12px; color: #333; font-family: 'Poppins', sans-serif;">${tech}</span>`
-      ).join('');
-      
-      return `
-        <div style="margin-bottom: 12px; page-break-inside: avoid;">
-          <h3 style="color: #000; margin: 0 0 4px 0; font-size: 18px; font-weight: 600; font-family: 'Poppins', sans-serif;">${project.name}</h3>
-          <p style="margin: 0 0 4px 0; color: #000; font-size: 14px; line-height: 20px; font-family: 'Poppins', sans-serif;">Description: ${project.description}</p>
-          <p style="color: #000; margin: 0 0 4px 0; font-size: 14px; font-family: 'Poppins', sans-serif;">Technologies:</p>
-          <div style="margin-bottom: 8px; line-height: 1.4;">
-            ${techTags}
-          </div>
-          <p style="color: #000; margin: 0; font-size: 14px; font-family: 'Poppins', sans-serif;">App Link: <a href="${formatUrl(project.link)}" style="color: #007AFF; text-decoration: none;" target="_blank">${project.link}</a></p>
-        </div>
-      `;
-    }).join('');
-    
-    const languageList = languages.map((lang: any) => `${lang.name} (${lang.proficiency})`).join(', ');
+    const categories = ['frontend', 'mobile', 'backend', 'database', 'testcases'];
+
+    const shortenText = (text: string, maxLength = 90) => {
+      if (!text) return '';
+      const trimmed = text.trim();
+      if (trimmed.length <= maxLength) return trimmed;
+      return `${trimmed.slice(0, maxLength - 3).replace(/\s+\S*$/, '')}...`;
+    };
+    const categoryLabels: { [key: string]: string } = {
+      frontend: 'Frontend',
+      mobile: 'Mobile',
+      backend: 'Backend',
+      database: 'Database',
+      testcases: 'Testing',
+    };
+
+    const groupedSkills = categories
+      .map((cat) => ({
+        category: cat,
+        label: categoryLabels[cat],
+        items: skills.filter((s: any) => s.category === cat),
+      }))
+      .filter((g) => g.items.length > 0);
+
+    const contactLine = [
+      personalInfo.phone ? escapeHtml(personalInfo.phone) : null,
+      personalInfo.email ? escapeHtml(personalInfo.email) : null,
+      personalInfo.location ? escapeHtml(personalInfo.location) : null,
+    ]
+      .filter(Boolean)
+      .join(' | ');
+
+    const languageLine = languages.map((lang: any) => `${escapeHtml(lang.name)} (${escapeHtml(lang.proficiency)})`).join(', ');
+
+    const classicStyles = `
+      html, body {
+        width: 210mm;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'EB Garamond', Georgia, serif;
+        color: #111;
+        background-color: #fff;
+      }
+      body {
+        line-height: 1.18;
+        font-size: 10px;
+        max-width: 210mm;
+        margin: 0;
+        padding: 4mm 6mm 4mm;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 4mm;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #111;
+      }
+      .name {
+        font-size: 29px;
+        margin: 0 0 3px 0;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .title {
+        font-size: 11.5px;
+        margin: 0 0 4px 0;
+        color: #222;
+        font-weight: 600;
+      }
+      .personal-info {
+        margin-top: 3px;
+      }
+      .personal-text {
+        margin: 0;
+        font-size: 10px;
+        color: #333;
+        line-height: 1.22;
+        word-wrap: break-word;
+      }
+      .section {
+        margin-top: 8px;
+      }
+      .section-title {
+        font-size: 10.5px;
+        margin: 0 0 4px 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #111;
+        border-bottom: 1px solid #111;
+        padding-bottom: 2px;
+      }
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 2px;
+      }
+      .item-title {
+        margin: 0;
+        font-size: 11.5px;
+        font-weight: 700;
+        color: #111;
+      }
+      .item-meta {
+        margin: 0;
+        font-size: 9.5px;
+        color: #555;
+        min-width: 90px;
+        text-align: right;
+      }
+      .body-text {
+        margin: 0;
+        font-size: 10px;
+        color: #222;
+        line-height: 1.22;
+      }
+      .bullet-list {
+        margin: 3px 0 0 0;
+        padding-left: 12px;
+      }
+      .bullet-list li {
+        margin-bottom: 2px;
+        font-size: 10px;
+        line-height: 1.22;
+      }
+      .skill-group {
+        margin-bottom: 6px;
+      }
+      .skill-label {
+        margin: 0 0 2px 0;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #111;
+      }
+      .skill-text {
+        margin: 0;
+        font-size: 10px;
+        color: #222;
+        line-height: 1.25;
+      }
+      .link {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+      .portfolio-links {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .portfolio-links li {
+        margin-bottom: 3px;
+        font-size: 10px;
+        line-height: 1.22;
+      }
+      .item {
+        margin-bottom: 6px;
+      }
+      .project-tech {
+        margin-top: 3px;
+        font-size: 10px;
+        color: #333;
+        font-style: italic;
+      }
+      @media print {
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        .section,
+        .item {
+          page-break-inside: avoid;
+        }
+      }
+    `;
+
+    const modernStyles = classicStyles;
 
     return `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="utf-8">
-        <title>${personalInfo.fullName} - Resume</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-          body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #000;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-          }
-          .header {
-            margin-bottom: 20px;
-          }
-          .name {
-            font-size: 32px;
-            color: #000;
-            margin: 0 0 4px 0;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-          }
-          .title {
-            font-size: 18px;
-            color: #000;
-            margin: 0 0 12px 0;
-            font-family: 'Poppins', sans-serif;
-          }
-          .personal-info {
-            margin-bottom: 12px;
-          }
-          .personal-info p {
-            color: #000;
-            font-size: 14px;
-            margin: 0 0 2px 0;
-            font-family: 'Poppins', sans-serif;
-            line-height: 18px;
-          }
-          .section {
-            margin: 8px 0 4px 0;
-          }
-          .section-title {
-            font-size: 20px;
-            color: #000;
-            margin: 0 0 8px 0;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-          }
-          .skills-section {
-            margin: 40px 0 8px 0;
-          }
-          .summary {
-            color: #000;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 4px;
-            line-height: 20px;
-          }
-          .skills-list {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 12px;
-          }
-          .experience-item, .education-item, .project-item {
-            margin-bottom: 8px;
-          }
-          .experience-item h3, .education-item h3, .project-item h3 {
-            font-family: 'Poppins', sans-serif;
-            color: #000;
-            margin: 0 0 4px 0;
-            font-size: 18px;
-            font-weight: 600;
-          }
-          .experience-item p, .education-item p, .project-item p {
-            font-family: 'Poppins', sans-serif;
-            color: #000;
-            margin: 0 0 4px 0;
-            font-size: 15px;
-            line-height: 20px;
-          }
-          .languages {
-            color: #000;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            line-height: 20px;
-          }
-          a {
-            color: #007AFF;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-          @media print {
-            body { margin: 0; padding: 15px; }
-            .section { page-break-inside: avoid; }
-            .experience-item, .project-item { page-break-inside: avoid; }
-          }
-        </style>
+        <title>${escapeHtml(personalInfo.fullName)} - Resume</title>
+        <style>${template === 'classic' ? classicStyles : modernStyles}</style>
       </head>
       <body>
         <div class="header">
-          <h1 class="name">${personalInfo.fullName}</h1>
-          <p class="title">${personalInfo.title}</p>
+          <p class="name">${escapeHtml(personalInfo.fullName)}</p>
+          <p class="title">${escapeHtml(personalInfo.title)}</p>
           <div class="personal-info">
-            <p>Email- ${personalInfo.email}</p>
-            <p>Phone- ${personalInfo.phone}</p>
-            <p>Location- ${personalInfo.location}</p>
-            ${personalInfo.website ? `<p>Portfolio Website- <a href="${formatUrl(personalInfo.website)}" style="color: #007AFF; text-decoration: none;" target="_blank">${personalInfo.website}</a></p>` : ''}
-            ${personalInfo.linkedin ? `<p>LinkedIn- <a href="${formatUrl(personalInfo.linkedin)}" style="color: #007AFF; text-decoration: none;" target="_blank">${personalInfo.linkedin}</a></p>` : ''}
-            ${personalInfo.github ? `<p>GitHub- <a href="${formatUrl(personalInfo.github)}" style="color: #007AFF; text-decoration: none;" target="_blank">${personalInfo.github}</a></p>` : ''}
+            <p class="personal-text">${escapeHtml(contactLine)}</p>
+            <!-- Header Links -->
+            ${personalInfo.linkedin ? `<p class="personal-text"><a class="link" href="${formatUrl(personalInfo.linkedin)}" target="_blank">LinkedIn</a>` : ''}${personalInfo.github ? ` • <a class="link" href="${formatUrl(personalInfo.github)}" target="_blank">GitHub</a>` : ''}${personalInfo.website ? ` • <a class="link" href="${formatUrl(personalInfo.website)}" target="_blank">Portfolio</a>` : ''}${personalInfo.linkedin || personalInfo.github || personalInfo.website ? '</p>' : ''}
           </div>
         </div>
 
-        <div class="section">
-          <h2 class="section-title">Summary</h2>
-          <p class="summary">${summary}</p>
-        </div>
-
-        <div class="skills-section">
-          <h2 class="section-title">Skills</h2>
-          <div class="skills-list">
-            ${skillsList}
+        ${summary ? `
+          <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <p class="body-text">${escapeHtml(summary)}</p>
           </div>
-        </div>
-
-        <div class="section">
-          <h2 class="section-title">Experience</h2>
-          ${experienceList}
-        </div>
-
-        <div class="section">
-          <h2 class="section-title">Projects</h2>
-          ${projectList}
-        </div>
-
-        <div class="section">
-          <h2 class="section-title">Education</h2>
-          ${educationList}
-        </div>
-
-        ${certifications.length > 0 ? `
-        <div class="section">
-          <h2 class="section-title">Certifications</h2>
-          ${certifications.map((cert: any) => `
-            <div class="experience-item">
-              <h3 style="color: #000; margin: 0 0 4px 0; font-size: 15px; font-weight: 600; font-family: 'Poppins', sans-serif;">${cert.name}</h3>
-              <p style="color: #000; margin: 0 0 4px 0; font-size: 14px; font-family: 'Poppins', sans-serif;">${cert.issuer} | ${cert.date}</p>
-              ${cert.link ? `<p style="color: #000; margin: 0; font-size: 14px; font-family: 'Poppins', sans-serif;">Link: <a href="${formatUrl(cert.link)}" style="color: #007AFF; text-decoration: none;" target="_blank">${cert.link}</a></p>` : ''}
-            </div>
-          `).join('')}
-        </div>
         ` : ''}
 
         <div class="section">
-          <h2 class="section-title">Languages</h2>
-          <p class="languages">${languageList}</p>
+          <div class="section-title">Technical Skills</div>
+          ${groupedSkills.map((group) => `
+            <div class="skill-group">
+              <p class="skill-label">${escapeHtml(group.label)}</p>
+              <p class="skill-text">${group.items.map((skill: any) => escapeHtml(skill.name)).join(', ')}</p>
+            </div>
+          `).join('')}
         </div>
+
+        <div class="section">
+          <div class="section-title">Education</div>
+          ${education.map((edu: any) => `
+            <div class="item">
+              <div class="item-header">
+                <p class="item-title">${escapeHtml(edu.institution)}</p>
+                <p class="item-meta">${escapeHtml(edu.location)}</p>
+              </div>
+              <p class="body-text">${escapeHtml(edu.degree)} | ${escapeHtml(edu.year)}</p>
+            </div>
+          `).join('')}
+        </div>
+
+          <div class="section">
+          <div class="section-title">Experience</div>
+          ${experiences.map((exp: any) => `
+            <div class="item">
+              <div class="item-header">
+                <p class="item-title">${escapeHtml(exp.position)} @ ${escapeHtml(exp.company)}</p>
+                <p class="item-meta">${escapeHtml(exp.startDate)} — ${escapeHtml(exp.endDate)}</p>
+              </div>
+              <p class="body-text">${escapeHtml(exp.location)}</p>
+              <ul class="bullet-list">
+                ${exp.achievements && exp.achievements.length > 0 ? exp.achievements.slice(0, 4).map((achievement: string) => `<li>${escapeHtml(achievement)}</li>`).join('') : `<li>${escapeHtml(exp.description)}</li>`}
+              </ul>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <div class="section-title">Projects</div>
+          ${projects.map((project: any) => `
+            <div class="item">
+              <div class="item-header">
+                <p class="item-title">${escapeHtml(project.name)}</p>
+                <p class="item-meta">${escapeHtml(project.duration || '')}</p>
+              </div>
+              ${project.role ? `<p class="body-text">${escapeHtml(project.role)}</p>` : ''}
+              <ul class="bullet-list">
+                <li>${escapeHtml(shortenText(project.description, 110))}</li>
+              </ul>
+              ${project.technologies && project.technologies.length > 0 ? `<p class="body-text">Technologies: ${project.technologies.map((tech: string) => escapeHtml(tech)).join(', ')}</p>` : ''}
+              ${project.link ? `<p class="body-text"><a class="link" href="${formatUrl(project.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(project.link)}</a></p>` : ''}
+            </div>
+          `).join('')}
+        </div>
+
+        ${certifications.length > 0 ? `
+          <div class="section">
+            <div class="section-title">Certifications / Achievements</div>
+            <ul class="bullet-list">
+              ${certifications.map((cert: any) => `
+                <li>
+                  <strong>${escapeHtml(cert.name)}</strong>
+                  ${cert.link ? `<br/><a class="link" href="${formatUrl(cert.link)}" target="_blank">${escapeHtml(cert.link)}</a>` : ''}
+                  <br/><span style="font-size: 8px; color: #555;">${escapeHtml(cert.issuer)} • ${escapeHtml(cert.date)}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        ` : ''}
+
+        ${languages.length > 0 ? `
+          <div class="section">
+            <div class="section-title">Languages</div>
+            <p class="body-text">${languageLine}</p>
+          </div>
+        ` : ''}
       </body>
       </html>
     `;
@@ -390,69 +480,113 @@ ${languages.map((lang: any) => `${lang.name} (${lang.proficiency})`).join(', ')}
             backgroundColor: "#fff",
             borderRadius: 16,
             padding: 20,
-            width: "90%",
+            width: "95%",
+            maxWidth: 800,
             alignItems: "center",
+            maxHeight: "90%",
           }}
         >
-          {/* Small Preview */}
-          <View
-            style={{
-              width: 300,
-              height: 400,
-              marginBottom: 16,
-              borderWidth: 1,
-              borderColor: "#eee",
-              borderRadius: 8,
-              overflow: "hidden",
-            }}
-          >
-            <SelectedTemplateComponent
-              resumeData={resumeData}
-              previewMode={true}
-              fontSize={14}
-            />
-          </View>
-          {/* Export Format Buttons */}
-          <CustomText
-            style={{ fontWeight: "bold", fontSize: 16, marginBottom: 8 }}
-          >
-            Export as:
-          </CustomText>
-          <View style={{ flexDirection: "row", gap: 12 }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#007AFF",
-                padding: 10,
-                borderRadius: 8,
-              }}
-              onPress={() => downloadFile('pdf')}
-            >
-              <CustomText style={{ color: "#fff" }}>PDF</CustomText>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#5856D6",
-                padding: 10,
-                borderRadius: 8,
-              }}
-              onPress={() => downloadFile('docx')}
-            >
-              <CustomText style={{ color: "#fff" }}>DOCX</CustomText>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#34C759",
-                padding: 10,
-                borderRadius: 8,
-              }}
-              onPress={() => downloadFile('txt')}
-            >
-              <CustomText style={{ color: "#fff" }}>TXT</CustomText>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity onPress={onClose} style={{ marginTop: 16 }}>
-            <CustomText style={{ color: "#007AFF" }}>Cancel</CustomText>
-          </TouchableOpacity>
+          {showPreview ? (
+            <>
+              {/* Full PDF Preview */}
+              <CustomText
+                style={{ fontWeight: "bold", fontSize: 18, marginBottom: 16 }}
+              >
+                PDF Preview
+              </CustomText>
+              <ScrollView
+                style={{
+                  width: "100%",
+                  height: 500,
+                  marginBottom: 16,
+                  borderWidth: 1,
+                  borderColor: "#eee",
+                  borderRadius: 8,
+                  backgroundColor: "#f9f9f9",
+                }}
+                showsVerticalScrollIndicator={true}
+                bounces={false}
+              >
+                <PreviewTemplate
+                  resumeData={resumeData}
+                  previewMode={true}
+                  fontSize={12}
+                />
+              </ScrollView>
+              {/* Preview Action Buttons */}
+              <View style={{ flexDirection: "row", gap: 12, marginBottom: 16 }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#007AFF",
+                    padding: 12,
+                    borderRadius: 8,
+                    minWidth: 120,
+                  }}
+                  onPress={() => setShowPreview(false)}
+                >
+                  <CustomText style={{ color: "#fff", textAlign: "center" }}>Export PDF</CustomText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#6c757d",
+                    padding: 12,
+                    borderRadius: 8,
+                    minWidth: 120,
+                  }}
+                  onPress={onClose}
+                >
+                  <CustomText style={{ color: "#fff", textAlign: "center" }}>Cancel</CustomText>
+                </TouchableOpacity>
+              </View>
+            </>
+          ) : (
+            <>
+              {/* Export Options */}
+              <CustomText
+                style={{ fontWeight: "bold", fontSize: 18, marginBottom: 16 }}
+              >
+                Choose Export Format
+              </CustomText>
+              <View style={{ flexDirection: "row", gap: 12, marginBottom: 16 }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#007AFF",
+                    padding: 12,
+                    borderRadius: 8,
+                    minWidth: 80,
+                  }}
+                  onPress={() => downloadFile('pdf')}
+                >
+                  <CustomText style={{ color: "#fff" }}>PDF</CustomText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#5856D6",
+                    padding: 12,
+                    borderRadius: 8,
+                    minWidth: 80,
+                  }}
+                  onPress={() => downloadFile('docx')}
+                >
+                  <CustomText style={{ color: "#fff" }}>DOCX</CustomText>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#34C759",
+                    padding: 12,
+                    borderRadius: 8,
+                    minWidth: 80,
+                  }}
+                  onPress={() => downloadFile('txt')}
+                >
+                  <CustomText style={{ color: "#fff" }}>TXT</CustomText>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity onPress={() => setShowPreview(true)}>
+                <CustomText style={{ color: "#007AFF" }}>← Back to Preview</CustomText>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
     </CustomModal>

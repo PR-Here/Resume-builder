@@ -47,6 +47,11 @@ export enum ColorTheme {
 }
 
 export enum SkillCategory {
+  FRONTEND = 'frontend',
+  MOBILE = 'mobile',
+  BACKEND = 'backend',
+  DATABASE = 'database',
+  TESTCASES = 'testcases',
   LANGUAGE = 'language',
   SOFT = 'soft',
   TECHNICAL = 'technical',

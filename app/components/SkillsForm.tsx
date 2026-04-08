@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, TextStyle, ViewStyle } from 'react-native';
-import { FONT_SIZE, SPACING, BORDER_RADIUS, INPUT_HEIGHT } from '../styles/responsive';
-import { SkillsFormProps } from '../types/interfaces';
-import Text from './Text';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { BORDER_RADIUS, FONT_SIZE, INPUT_HEIGHT, SPACING } from '../styles/responsive';
+import { SkillCategory } from '../types/enums';
+import { SkillsFormProps } from '../types/interfaces';
 import { validateField } from '../utils/validationUtils';
+import Text from './Text';
 
 export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormProps) {
   const [newSkill, setNewSkill] = useState('');
@@ -27,7 +28,7 @@ export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormP
       return;
     }
 
-    onChange([...skills, { name: newSkill.trim(), level: 0 }]);
+    onChange([...skills, { name: newSkill.trim(), level: 0, category: SkillCategory.FRONTEND }]);
     setNewSkill('');
     setError('');
   };
@@ -44,11 +45,37 @@ export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormP
     onChange(updatedSkills);
   };
 
+  const handleCategoryChange = (index: number, category: SkillCategory) => {
+    const updatedSkills = [...skills];
+    updatedSkills[index] = { ...updatedSkills[index], category };
+    onChange(updatedSkills);
+  };
+
+  // Group skills by category
+  const categories = [SkillCategory.FRONTEND, SkillCategory.MOBILE, SkillCategory.BACKEND, SkillCategory.DATABASE, SkillCategory.TESTCASES];
+  const categoryLabels: { [key in SkillCategory]: string } = {
+    [SkillCategory.FRONTEND]: '🎨 Frontend',
+    [SkillCategory.MOBILE]: '📱 Mobile',
+    [SkillCategory.BACKEND]: '⚙️ Backend',
+    [SkillCategory.DATABASE]: '🗄️ Database',
+    [SkillCategory.TESTCASES]: '✅ Testing & QA',
+    [SkillCategory.LANGUAGE]: 'Languages',
+    [SkillCategory.SOFT]: 'Soft Skills',
+    [SkillCategory.TECHNICAL]: 'Technical',
+    [SkillCategory.TOOL]: 'Tools',
+  };
+
+  const groupedSkills = categories.map(cat => ({
+    category: cat,
+    label: categoryLabels[cat],
+    skills: skills.filter(s => s.category === cat)
+  }));
+
   return (
     <ScrollView style={styles.container}>
       <Text style={[styles.sectionTitle, { fontFamily }]}>Skills</Text>
       <Text style={[styles.sectionDescription, { fontFamily }]}>
-        Add your technical and professional skills. You can rate your proficiency level for each skill.
+        Add skills and organize by category. Rate your proficiency level.
       </Text>
 
       <View style={styles.form}>
@@ -61,7 +88,7 @@ export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormP
                 setNewSkill(value);
                 setError('');
               }}
-              placeholder="e.g., JavaScript,  UI/UX Design"
+              placeholder="Add new skill..."
               placeholderTextColor="#999"
               onSubmitEditing={handleAddSkill}
             />
@@ -70,7 +97,7 @@ export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormP
               onPress={handleAddSkill}
               disabled={!newSkill.trim()}
             >
-              <Ionicons name="add" size={24} color="#fff" />
+              <Ionicons name="add" size={20} color="#fff" />
             </TouchableOpacity>
           </View>
           {error && (
@@ -78,33 +105,44 @@ export default function SkillsForm({ skills, onChange, fontFamily }: SkillsFormP
           )}
         </View>
 
-        <View style={styles.skillsList}>
-          {skills.map((skill, index) => (
-            <View key={index} style={styles.skillItem}>
-              <View style={styles.skillInfo}>
-                <Text style={[styles.skillName, { fontFamily }]}>{skill.name}</Text>
-                <View style={styles.levelContainer}>
-                  {[1, 2, 3, 4, 5].map((level) => (
-                    <TouchableOpacity
-                      key={level}
-                      style={[
-                        styles.levelDot,
-                        skill.level >= level && styles.levelDotActive,
-                      ]}
-                      onPress={() => handleSkillLevelChange(index, level)}
-                    />
-                  ))}
-                </View>
+        {/* Grouped Skills */}
+        {groupedSkills.map(group => 
+          group.skills.length > 0 && (
+            <View key={group.category} style={styles.categoryGroup}>
+              <Text style={[styles.categoryTitle, { fontFamily }]}>{group.label}</Text>
+              <View style={styles.skillsList}>
+                {group.skills.map((skill, index) => {
+                  const globalIndex = skills.findIndex(s => s === skill);
+                  return (
+                    <View key={globalIndex} style={styles.skillItem}>
+                      <View style={styles.skillInfo}>
+                        <Text style={[styles.skillName, { fontFamily }]}>{skill.name}</Text>
+                        <View style={styles.levelContainer}>
+                          {[1, 2, 3, 4, 5].map((level) => (
+                            <TouchableOpacity
+                              key={level}
+                              style={[
+                                styles.levelDot,
+                                skill.level >= level && styles.levelDotActive,
+                              ]}
+                              onPress={() => handleSkillLevelChange(globalIndex, level)}
+                            />
+                          ))}
+                        </View>
+                      </View>
+                      <TouchableOpacity
+                        style={styles.removeButton}
+                        onPress={() => handleRemoveSkill(globalIndex)}
+                      >
+                        <Ionicons name="close-circle" size={20} color="#FF3B30" />
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
               </View>
-              <TouchableOpacity
-                style={styles.removeButton}
-                onPress={() => handleRemoveSkill(index)}
-              >
-                <Ionicons name="close-circle" size={24} color="#FF3B30" />
-              </TouchableOpacity>
             </View>
-          ))}
-        </View>
+          )
+        )}
       </View>
     </ScrollView>
   );
@@ -161,15 +199,24 @@ const styles = StyleSheet.create({
     color: '#FF3B30',
     fontSize: FONT_SIZE.bodySmall,
   } as TextStyle,
+  categoryGroup: {
+    marginTop: SPACING.md,
+  } as ViewStyle,
+  categoryTitle: {
+    fontSize: FONT_SIZE.h3,
+    fontWeight: '600',
+    color: '#007AFF',
+    marginBottom: SPACING.sm,
+  } as TextStyle,
   skillsList: {
-    gap: SPACING.sm,
+    gap: SPACING.xs,
   } as ViewStyle,
   skillItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#f8f9fa',
-    padding: SPACING.md,
+    padding: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
   } as ViewStyle,
   skillInfo: {
@@ -177,7 +224,7 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   } as ViewStyle,
   skillName: {
-    fontSize: FONT_SIZE.body,
+    fontSize: FONT_SIZE.bodySmall,
     fontWeight: '500',
   } as TextStyle,
   levelContainer: {
@@ -185,9 +232,9 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   } as ViewStyle,
   levelDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
     backgroundColor: '#e0e0e0',
   } as ViewStyle,
   levelDotActive: {

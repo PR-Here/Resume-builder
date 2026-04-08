@@ -164,7 +164,7 @@ export default function ResumeBuilderScreen() {
               fontFamily={fontFamily}
               style={{ textAlign: "center" }}
             >
-              We're working on implementing this section
+              We&apos;re working on implementing this section
             </CustomText>
           </View>
         );

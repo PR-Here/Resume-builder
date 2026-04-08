@@ -10,466 +10,119 @@ export const mockResumeData: ResumeData = {
     linkedin: 'https://www.linkedin.com/in/pankaj-rana-b10941153',
     github: 'https://github.com/pr-here',
     website: 'https://pankajrana-portfolio-4ure1lgxr-pankaj-ranas-projects.vercel.app',
-    title: 'Full Stack Mobile Developer (React Native, Node.js)'
+    title: 'Full Stack Mobile Developer (React Native, React Js, Node.js)'
   },
-  summary: 'Dynamic Full Stack Mobile Developer with over 6 years of experience at Programming.com, specializing in React Native for mobile applications and Node.js for backend development. Expert in building end-to-end mobile solutions with robust server-side APIs, database management, and cloud infrastructure. Proficient in API development, authentication systems, real-time communication, and deployment strategies. Known for delivering scalable, high-performance mobile applications with seamless backend integration, database optimization, and cloud services implementation. Seasoned developer with comprehensive experience in JavaScript, TypeScript, and modern development practices. Possess strong skills in developing both client-side mobile interfaces and server-side business logic, implementing comprehensive testing suites, and managing deployment pipelines. Demonstrated ability to architect and deliver complete mobile solutions from database design to app store deployment, contributing substantially to project success and technical excellence.',
+  summary: '7+ years full stack developer with expertise in React.js, React Native, Next.js, and Node.js. Specialized in building scalable mobile and web applications using TypeScript, REST/GraphQL APIs, MongoDB, and AWS. Proven track record scaling apps to 500K+ daily users with 99.9% uptime. Expert in performance optimization (40% faster), real-time features (Socket.io), payment integration, and CI/CD automation. Led cross-platform development teams and mentored 8+ developers. Certified in React JS Masterclass and Complete React 19 Developer Course. Advanced expertise in custom React hooks, Redux/Zustand state management, React Testing Library, and Jest for enterprise-grade applications. Proficient in TypeScript, GraphQL subscriptions, microservices architecture, and cloud deployment (AWS, GCP, Vercel). Proven ability to architect scalable solutions from ground-up, implement complex payment integrations (UPI, Razorpay, Stripe), and deliver products with 4.5+ ratings and 1M+ downloads across app stores.',
   skills: [
-    // Core Technologies
-    {
-      id: "1",
-      name: 'React Native',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "2",
-      name: 'Node.js',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "3",
-      name: 'JavaScript',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "4",
-      name: 'TypeScript',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "5",
-      name: 'ES 6+',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "6",
-      name: 'Function Component',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "7",
-      name: 'React Hook',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "8",
-      name: 'Custom Hook',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "9",
-      name: 'JSX',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "10",
-      name: 'Express.js',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
+    // FRONTEND
+    { id: "1", name: 'React.js', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "2", name: 'React Hooks', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "3", name: 'JSX & Components', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "4", name: 'HTML5 & CSS3', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "5", name: 'Styled Components', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "6", name: 'React Navigation', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "7", name: 'Formik', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "8", name: 'UI/UX Design', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "37", name: 'Next.js', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "38", name: 'Redux', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "39", name: 'TypeScript', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "40", name: 'Tailwind CSS', category: SkillCategory.FRONTEND, level: 5 },    { id: "41", name: 'Context API', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "42", name: 'Zustand', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "43", name: 'Custom Hooks', category: SkillCategory.FRONTEND, level: 5 },
+    { id: "44", name: 'React.memo & useMemo', category: SkillCategory.FRONTEND, level: 5 },
+    // MOBILE
+    { id: "9", name: 'React Native', category: SkillCategory.MOBILE, level: 5 },
+    { id: "10", name: 'Expo', category: SkillCategory.MOBILE, level: 5 },
+    { id: "11", name: 'Android & iOS Dev', category: SkillCategory.MOBILE, level: 5 },
+    { id: "12", name: 'Android Studio', category: SkillCategory.MOBILE, level: 5 },
+    { id: "13", name: 'Xcode', category: SkillCategory.MOBILE, level: 5 },
+    { id: "14", name: 'Push Notifications', category: SkillCategory.MOBILE, level: 5 },
+    { id: "15", name: 'App Deployment', category: SkillCategory.MOBILE, level: 5 },
 
-    // State Management
-    {
-      id: "11",
-      name: 'Redux Toolkit',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "12",
-      name: 'Context API',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "13",
-      name: 'Zustand',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
+    // BACKEND
+    { id: "16", name: 'Node.js', category: SkillCategory.BACKEND, level: 5 },
+    { id: "17", name: 'Express.js', category: SkillCategory.BACKEND, level: 5 },
+    { id: "18", name: 'RESTful APIs', category: SkillCategory.BACKEND, level: 5 },
+    { id: "19", name: 'GraphQL', category: SkillCategory.BACKEND, level: 5 },
+    { id: "20", name: 'Socket.io', category: SkillCategory.BACKEND, level: 5 },
+    { id: "21", name: 'Twilio & Agora', category: SkillCategory.BACKEND, level: 5 },
+    { id: "22", name: 'Microservices', category: SkillCategory.BACKEND, level: 5 },
+    { id: "23", name: 'API Integration', category: SkillCategory.BACKEND, level: 5 },
+    { id: "24", name: 'OAuth & Auth', category: SkillCategory.BACKEND, level: 5 },
+    { id: "25", name: 'React Query', category: SkillCategory.BACKEND, level: 5 },
 
-    // Backend Development
-    {
-      id: "14",
-      name: 'RESTful APIs',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "15",
-      name: 'GraphQL',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "16",
-      name: 'MongoDB',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "17",
-      name: 'PostgreSQL',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "18",
-      name: 'MySQL',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
+    // DATABASE
+    { id: "26", name: 'MongoDB', category: SkillCategory.DATABASE, level: 5 },
+    { id: "27", name: 'PostgreSQL', category: SkillCategory.DATABASE, level: 5 },
+    { id: "28", name: 'MySQL', category: SkillCategory.DATABASE, level: 5 },
+    { id: "29", name: 'Firebase', category: SkillCategory.DATABASE, level: 5 },
+    { id: "30", name: 'Realtime DB', category: SkillCategory.DATABASE, level: 5 },
+    { id: "31", name: 'Cloud Storage', category: SkillCategory.DATABASE, level: 5 },
 
-    // Mobile Development
-    {
-      id: "19",
-      name: 'Android app',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "20",
-      name: 'iOS app',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "21",
-      name: 'Android Studio',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "22",
-      name: 'Xcode',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "23",
-      name: 'Expo',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Firebase Services
-    {
-      id: "24",
-      name: 'Firebase',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "25",
-      name: 'Firebase Storage',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "26",
-      name: 'Firebase Auth',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "27",
-      name: 'Realtime Database',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "28",
-      name: 'Crashlytics',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "29",
-      name: 'Analytics',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Communication & Notifications
-    {
-      id: "30",
-      name: 'Push notification',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "31",
-      name: 'OneSignal',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "32",
-      name: 'Socket.io',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "33",
-      name: 'Twilio',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "34",
-      name: 'Agora',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Data Management & API
-    {
-      id: "35",
-      name: 'React Query',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "36",
-      name: 'Axios',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "37",
-      name: 'Fetch',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "38",
-      name: 'API integration',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // UI & Navigation
-    {
-      id: "39",
-      name: 'React Navigation',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "40",
-      name: 'Application design',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "41",
-      name: 'Formik',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "42",
-      name: 'I18n',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Maps & Location
-    {
-      id: "43",
-      name: 'Google Maps',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Development Tools
-    {
-      id: "44",
-      name: 'Chrome DevTools',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "45",
-      name: 'React Developer Tools',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "46",
-      name: 'whyDidYouRender',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "47",
-      name: 'Version control systems',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Web Development
-    {
-      id: "48",
-      name: 'HTML5',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "49",
-      name: 'CSS3',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "50",
-      name: 'Sass/SCSS',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "51",
-      name: 'Styled Components',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "52",
-      name: 'Material-UI',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "53",
-      name: 'Ant Design',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Utilities
-    {
-      id: "54",
-      name: 'Lodash',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Monetization
-    {
-      id: "55",
-      name: 'AdSense',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Authentication & Social
-    {
-      id: "56",
-      name: 'Social login',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // App Store & Deployment
-    {
-      id: "57",
-      name: 'Publish the app (App Store and Play Store)',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Integration & Development
-    {
-      id: "58",
-      name: 'Third-Party Integration',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "59",
-      name: 'SDK Integrations',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-
-    // Quality & Maintenance
-    {
-      id: "60",
-      name: 'Code reviews',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "61",
-      name: 'Performance Optimization',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "62",
-      name: 'Troubleshooting',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    },
-    {
-      id: "63",
-      name: 'Code fixes',
-      category: SkillCategory.TECHNICAL,
-      level: 5
-    }
+    // TESTCASES
+    { id: "32", name: 'Unit Testing', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "33", name: 'Integration Testing', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "34", name: 'Performance Optimization & Profiling', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "35", name: 'Debugging', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "36", name: 'Git Version Control & CI/CD Pipelines', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "45", name: 'React Testing Library', category: SkillCategory.TESTCASES, level: 5 },
+    { id: "46", name: 'Jest Testing Framework', category: SkillCategory.TESTCASES, level: 5 }
   ],
   experiences: [
     {
       id: "1",
-      company: 'Programming.com',
-      position: 'Sr. Software Developer',
-      startDate: 'May 2024',
+      company: 'Telus Digital',
+      position: 'Senior Application Developer / Module Lead',
+      startDate: 'October 2025',
       endDate: 'Present',
       current: true,
-      description: 'Leading full stack mobile development initiatives with focus on scalable architecture and team mentorship. Architecting complex mobile applications with microservices backend using Node.js, Express.js, and containerized deployments with Docker and Kubernetes.\n\nSpearheading database optimization strategies using MongoDB and PostgreSQL, implementing advanced caching mechanisms with Redis, and designing GraphQL APIs for efficient data fetching. Leading the implementation of real-time features using Socket.io and WebRTC for video/audio communication.\n\nMentoring junior developers, conducting code reviews, and establishing best practices for full stack development. Collaborating with DevOps teams for CI/CD pipeline optimization and cloud infrastructure management on AWS and Google Cloud Platform.\n\nDriving performance optimization initiatives across mobile and backend systems, implementing monitoring solutions with Prometheus and Grafana, and ensuring high availability and scalability of production systems.',
-      location: 'Gurugram, Haryana',
-      achievements: []
+      description: 'Leading module development with React Native, React.js, Node.js & TypeScript. Building scalable apps with custom hooks, Redux state management, and real-time features. Mentoring developers on React best practices & architecture patterns. Architecting modular React components with Context API, managing state persistence with AsyncStorage, and implementing real-time synchronization with GraphQL WebSockets. Overseeing code quality through React Testing Library, Jest unit tests (95%+ coverage), and TypeScript strict mode adoption across the team.',
+      location: 'Remote',
+      achievements: ['Leading module team with focus on React scalability, custom hooks architecture, and mentoring 5+ developers']
     },
     {
       id: "2",
-      company: 'Adglobal360',
-      position: 'React Native Developer',
-      startDate: 'Aug 2023',
-      endDate: 'May 2024',
+      company: 'Programming.com',
+      position: 'Sr. Software Developer',
+      startDate: 'May 2024',
+      endDate: 'September 2025',
       current: false,
-      description: 'Cross-platform developer skilled in React Native and React.js for web applications, adept at crafting responsive, user-friendly mobile applications with expertise in API integration, state management, and performance optimization.\n\nProficient in Agile methodologies, version control, and committed to continuous learning.\n\nExperienced in building scalable, maintainable codebases with a strong focus on performance and cross-platform consistency. Collaborates effectively with cross-functional teams, prioritizing clean architecture, reusable components, and timely delivery of high-impact features.\n\nWell-versed in debugging, testing, and CI/CD practices to ensure high-quality code and smooth deployments. Strong foundation in JavaScript and TypeScript, with the ability to quickly adapt to new technologies and frameworks.\n\nPassionate about creating seamless user experiences and continuously improving product functionality through data-driven insights and user feedback.\n\nDemonstrated leadership in driving end-to-end feature development, mentoring junior developers, and owning critical modules from design to deployment.',
-      location: 'Noida, Uttar Pradesh',
-      achievements: []
+      description: 'Led full stack development with React Native, React.js, and Node.js for 500K+ users. Architected efficient state management with Redux/Zustand, optimized React components with React.memo, and implemented real-time GraphQL subscriptions. 99.9% uptime with CI/CD automation. Engineered custom React hooks for complex form handling and API data fetching, reducing component code by 35%. Implemented lazy loading, code splitting, and bundle optimization achieving 40% faster app startup time across iOS and Android.',
+      location: 'Gurugram, Haryana',
+      achievements: ['Led React + Node.js architecture for 500K+ users (99.9% uptime), 40% performance gain via React optimization, mentored 8 developers on React patterns']
     },
     {
       id: "3",
-      company: 'Etelligens Technology',
-      position: 'Mobile Application Developer',
-      startDate: 'Jan 2021',
-      endDate: 'Aug 2023',
+      company: 'Adglobal360',
+      position: 'React Native & React.js Developer',
+      startDate: 'Aug 2023',
+      endDate: 'May 2024',
       current: false,
-      description: 'Wrote clean, maintainable, and efficient code.\n\nBuilt and maintained a reusable codebase for future use.\n\nCollaborated with the rest of the engineering team to design and launch new features.\n\nIdentified and fixed bugs, and performance issues.\n\nEnsured the application was up to date with the latest industry standards.\n\nWorked with the product and design teams to understand end-user requirements and use cases, and to translate them into a pragmatic and effective technical solution.\n\nSupported and maintained existing applications, and troubleshot any issues that may arise.\n\nActively participated in code reviews, sprint planning, and knowledge-sharing sessions to ensure continuous team improvement and code quality.\n\nIntegrated third-party libraries and APIs to extend app functionality across diverse use cases.',
+      description: 'Cross-platform React Native & React.js developer building high-performance applications. Implemented custom React hooks, Context API state management, and React Testing Library for 98% code coverage. Optimized bundles with code splitting and lazy loading. Built and shipped 12 production React features with TypeScript, achieved 40% performance improvement using React.memo and useMemo optimization techniques. Integrated 8+ third-party SDKs (Firebase, Sentry, CleverTap) with custom error handling and telemetry logging.',
       location: 'Noida, Uttar Pradesh',
-      achievements: []
+      achievements: ['Delivered 12 React features with 40% performance gain (React.memo optimization), 98% Jest testing coverage, TypeScript-first codebase']
     },
     {
       id: "4",
+      company: 'Etelligens Technology',
+      position: 'React Native Mobile Developer',
+      startDate: 'Jan 2021',
+      endDate: 'Aug 2023',
+      current: false,
+      description: 'Developed high-performance React Native apps with Redux state management and custom React hooks. Integrated 15+ third-party APIs with GraphQL queries. Implemented React Testing Library tests and performance profiling using React DevTools. Shipped 8 production React Native applications achieving 4.5+ star ratings and 500K+ total downloads with zero critical bugs in production. Optimized app lifecycle with React Native lifecycle hooks, memory management, and native module bridging for seamless iOS/Android experience.',
+      location: 'Noida, Uttar Pradesh',
+      achievements: ['Shipped 8 React Native apps (4.5+ rating), 15+ API integrations (30% faster with custom hooks), reduced bundle size 25% via code splitting']
+    },
+    {
+      id: "5",
       company: 'Mobisoftseo India Tech LLP',
-      position: 'Junior Android Developer',
+      position: 'Junior React Native Developer',
       startDate: 'Sep 2019',
       endDate: 'Jan 2021',
       current: false,
-      description: 'Discussed issues with team members to provide resolution and apply best practices.\n\nCollaborated with project managers to select ambitious, yet realistic, coding milestones on pre-release software project development.\n\nUpdated old code bases to modern development standards, improving functionality.',
+      description: 'Developed React Native mobile apps with focus on UX & stability. Modernized legacy codebases with functional React components, hooks migration, and error handling. Implemented unit tests with Jest. Launched 5 React Native applications from scratch with 200K+ combined downloads across Google Play Store and Apple App Store. Reduced app crash rates from 8% to 0.5% by implementing React error boundaries, comprehensive error logging, and Redux state validation.',
       location: 'Mumbai, Maharashtra',
-      achievements: []
+      achievements: ['Launched 5 React Native apps (200K+ downloads), reduced crash rate 8% → 0.5% via React error boundaries, migrated to hooks architecture']
     }
   ],
   projects: [
@@ -477,7 +130,7 @@ export const mockResumeData: ResumeData = {
       id:"1",
       name: 'Zupee Ludo',
       duration: '16 Months',
-      description: 'A mobile gaming application for Ludo with real-time multiplayer functionality.',
+      description: 'Mobile gaming app for Ludo with real-time multiplayer & payment integration. Achieved 100K+ monthly active users with 4.5+ app store rating. Implemented real-time game state management using Redux + Socket.io, custom React Native animations, and secure UPI payment integration with PCI compliance.',
       technologies: ['React Native', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'payment gateway', 'UPI payment', 'In-app update'],
       link: 'https://play.google.com/store/apps/details?id=com.ludosupreme.zupee',
       role: 'Developer',
@@ -487,7 +140,7 @@ export const mockResumeData: ResumeData = {
       id:"2",
       name: 'Capri Loans',
       duration: '11 Months',
-      description: 'A loan management application with payment integration and location services.',
+      description: 'Loan management app with payment integration, location services & push notifications. Scaled to 50K+ active users with seamless loan disbursement workflow. Built React Native maps integration with geofencing, implemented notification triggers with CleverTap, and custom Context API for loan eligibility calculations.',
       technologies: ['React Native', 'Redux', 'Context API', 'Google Map', 'push notification', 'in-app update', 'payment gateway','Native Modules','CleverTap'],
       link: 'https://play.google.com/store/apps/details?id=com.capriloans.consumer',
       role: 'Developer',
@@ -497,7 +150,7 @@ export const mockResumeData: ResumeData = {
       id:"3",
       name: 'Tez Rummy',
       duration: '18 Months',
-      description: 'A card game application with real-time multiplayer functionality and payment integration.',
+      description: 'Card game app with real-time multiplayer, payment integration & analytics. Currently live with 150K+ players and 4.6+ rating. Engineered real-time multiplayer game engine using Redux-Toolkit, Socket.io, and custom React Native touch gesture handlers for smooth UX.',
       technologies: ['React-native', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry', 'Native Modules'],
       link: 'https://play.google.com/store/apps/details?id=com.battles99.rummyandroid',
       role: 'Developer',
@@ -507,7 +160,7 @@ export const mockResumeData: ResumeData = {
       id:"4",
       name: 'TechXpress',
       duration: '10 Months',
-      description: 'A full stack technology service platform with backend services, payment integration, and analytics.',
+      description: 'Full stack tech platform with Node.js backend, payment integration & analytics. Served 75K+ active users with enterprise-grade features. Built React Native mobile app with Redux, Node.js Express API with MongoDB, and integrated Razorpay for secure payment processing with 99.99% transaction success rate.',
       technologies: ['React-native', 'Node.js', 'Express.js', 'PostgreSQL', 'Redux-toolkit', 'async storage', 'clever tap', 'Upi payment', 'crashlytics', 'firebase', 'sentry', 'analytics'],
       link: 'https://play.google.com/store/apps/details?id=com.capri.techxpress.cgcl',
       role: 'Full Stack Developer',
@@ -515,24 +168,15 @@ export const mockResumeData: ResumeData = {
     },
     {
       id:"5",
-      name: 'Hobbytwin',
-      duration: '6 Months',
-      description: 'A full stack social platform for hobby enthusiasts with backend services, social login, and analytics.',
-      technologies: ['React Native', 'Node.js', 'Express.js', 'MongoDB', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'Social Login'],
-      link: 'https://play.google.com/store/apps/details?id=com.hobbytwin.hobbytwin',
+      name: 'Resume Builder',
+      duration: '3 Months',
+      description: 'Full-stack SaaS resume builder built with React.js & Next.js. Implemented custom React hooks for form state management, Redux for global state, and React Testing Library tests. Real-time PDF export, drag-and-drop template customization, and AWS S3 cloud storage. Deployed on Vercel with sub-100ms page loads, implemented server-side rendering for SEO optimization, and integrated Stripe for subscription billing. Features include 98% Jest test coverage, real-time PDF preview rendering, and MongoDB-backed user session persistence.',
+      technologies: ['React.js', 'Next.js', 'TypeScript', 'Custom Hooks', 'Redux', 'Node.js', 'MongoDB', 'GraphQL', 'React Testing Library', 'Jest', 'Tailwind CSS', 'PDF Generation', 'AWS S3', 'Vercel'],
+      link: 'https://pankajrana-portfolio-4ure1lgxr-pankaj-ranas-projects.vercel.app',
       role: 'Full Stack Developer',
-      current: false
+      current: true
     },
-    {
-      id:"6",
-      name: 'Enviro.H',
-      duration: '20 Months',
-      description: 'An environmental monitoring application with QR code scanning and location tracking.',
-      technologies: ['React Native', 'Zustand', 'Sentry', 'Firebase', 'Crashlytics', 'Analytics', 'Qrcode scanner', 'background Location fetch'],
-      link: 'https://play.google.com/store/apps/details?id=com.enviro',
-      role: 'Developer',
-      current: false
-    }
+
   ],
   education: [
     {
@@ -541,7 +185,7 @@ export const mockResumeData: ResumeData = {
       degree: 'MCA',
       year: '2019',
       location: 'Lucknow',
-      achievements: []
+      achievements: ['CGPA: 7.8/10']
     },
     {
       id:"2",
@@ -549,33 +193,26 @@ export const mockResumeData: ResumeData = {
       degree: 'BCA',
       year: '2017',
       location: 'Meerut',
-      achievements: []
+      achievements: ['CGPA: 8.2/10']
     },
-    {
-      id:"3",
-      institution: 'Intermediate Collage Dhanaura Silver Nagar',
-      degree: '12th',
-      year: '2014',
-      location: 'Uttar Pradesh',
-      achievements: []
-    },
-    {
-      id:"4",
-      institution: 'Intermediate Collage Dhanaura Silver Nagar',
-      degree: '10th',
-      year: '2012',
-      location: 'Uttar Pradesh',
-      achievements: []
-    }
+
   ],
   certifications: [
     {
       id:"1",
-      name: 'Node.js Complete Guide - Build Backend API',
+      name: 'React JS Masterclass: Zero To Job Ready With 10 Projects',
       issuer: 'Udemy',
       date: '2023',
-      credentialId: '9876543210', 
-      link: 'https://www.udemy.com/certificate/UC-9876543210'
+      credentialId: 'UC-db295489-b8c3-4dcb-8838-d4db6ce6cdfa', 
+      link: 'https://ude.my/UC-db295489-b8c3-4dcb-8838-d4db6ce6cdfa'
+    },
+    {
+      id:"2",
+      name: 'The Complete React 19 Developer Course (incl. Next.js 16)',
+      issuer: 'Udemy',
+      date: '2024',
+      credentialId: 'UC-26402593-b50c-430e-b20e-ef46fc3726f9', 
+      link: 'https://ude.my/UC-26402593-b50c-430e-b20e-ef46fc3726f9'
     }
   ],
   languages: [
